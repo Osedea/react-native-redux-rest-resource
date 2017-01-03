@@ -1,7 +1,5 @@
 import middleware from './middleware';
-import { createCRUDActionCreators } from './actions';
-
-let endpoint = 'endpoint';
+import { createCRUDStatusActions, createCRUDActionCreators } from './actions';
 
 const OPTIONS = {
     DEBUG: true,
@@ -13,18 +11,27 @@ const OPTIONS = {
     },
     API_URL: 'localhost',
     HTTP_OPTIONS: {},
+    REDUX_ACTIONS_PREFIX: 'RNRRR',
 };
 
-export default (endpointSetByUser, options) => {
-    endpoint = endpointSetByUser;
+export default (endpoint, options) => {
+    const optionsMerged = {
+        ...OPTIONS,
+        ...options,
+    };
 
-    return middleware(
-        endpointSetByUser,
-        {
-            ...OPTIONS,
-            ...options,
-        }
-    );
+    return {
+        actions: createCRUDStatusActions(
+            endpoint,
+            optionsMerged.REDUX_ACTIONS_PREFIX
+        ),
+        actionCreators: createCRUDActionCreators(
+            endpoint,
+            optionsMerged.REDUX_ACTIONS_PREFIX
+        ),
+        middleware: middleware(
+            endpoint,
+            optionsMerged
+        ),
+    };
 };
-
-export const ACTION_CREATORS = createCRUDActionCreators(endpoint);

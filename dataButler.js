@@ -1,9 +1,9 @@
 import RequestHandler from './RequestHandler';
-import { createDataButlerActions } from './actions';
+import { createCRUDActionsAndActionCreators } from './actions';
 
-export default (endpoint, httpOptions) => {
-    const actionsToHandle = createDataButlerActions(endpoint);
-    const requestHandler = new RequestHandler(httpOptions);
+export default (endpoint, options) => {
+    const actionsToHandle = createCRUDActionsAndActionCreators(endpoint, options.REDUX_ACTIONS_PREFIX);
+    const requestHandler = new RequestHandler(options.HTTP_OPTIONS);
 
     return (action, store) => {
         switch (action.type) {

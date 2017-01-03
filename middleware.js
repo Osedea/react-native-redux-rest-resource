@@ -12,7 +12,7 @@ export default (endpoint, options) => {
         }
         isConnected = connected;
     };
-    const dataButlerMiddleware = dataButler(endpoint, options.HTTP_OPTIONS);
+    const dataButlerMiddleware = dataButler(endpoint, options);
 
     if (NetInfo) {
         NetInfo.isConnected.fetch().then().done(() => {
