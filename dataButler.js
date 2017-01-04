@@ -3,12 +3,13 @@ import { createCRUDActionsAndActionCreators } from './actions';
 
 export default (endpoint, options) => {
     const actionsToHandle = createCRUDActionsAndActionCreators(endpoint, options.REDUX_ACTIONS_PREFIX);
-    const requestHandler = new RequestHandler(options.HTTP_OPTIONS);
+
+    RequestHandler.options = options.HTTP_OPTIONS;
 
     return (action, store) => {
         switch (action.type) {
             case actionsToHandle.CREATE:
-                requestHandler.requestServer(
+                RequestHandler.requestServer(
                     endpoint,
                     'POST',
                     action.payload
@@ -21,7 +22,7 @@ export default (endpoint, options) => {
                 });
                 break;
             case actionsToHandle.READ:
-                requestHandler.requestServer(
+                RequestHandler.requestServer(
                     `${endpoint}s/${action.meta.id}`,
                     'GET'
                 ).then((resourceFromServer) => {
@@ -32,7 +33,7 @@ export default (endpoint, options) => {
                 });
                 break;
             case actionsToHandle.UPDATE:
-                requestHandler.requestServer(
+                RequestHandler.requestServer(
                     `${endpoint}s/${action.meta.id}`,
                     'PUT',
                     action.payload
@@ -44,7 +45,7 @@ export default (endpoint, options) => {
                 });
                 break;
             case actionsToHandle.DELETE:
-                requestHandler.requestServer(
+                RequestHandler.requestServer(
                     `${endpoint}s/${action.meta.id}`,
                     'DELETE'
                 ).then((resourceFromServer) => {
@@ -55,7 +56,7 @@ export default (endpoint, options) => {
                 });
                 break;
             case actionsToHandle.INDEX:
-                requestHandler.requestServer(
+                RequestHandler.requestServer(
                     `${endpoint}s`,
                     'GET'
                 ).then((resourceFromServer) => {

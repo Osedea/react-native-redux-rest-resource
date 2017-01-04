@@ -1,10 +1,6 @@
 import { camelizeKeys, decamelizeKeys } from 'humps';
 
 export default class RequestHandler {
-    constructor(options) {
-        this.options = options;
-    }
-
     static request(
         url,
         method = 'GET',
