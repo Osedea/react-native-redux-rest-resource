@@ -1,4 +1,4 @@
-import { camelizeKeys } from 'humps';
+import { camelize } from 'humps';
 
 export const createCRUDActions = (endpoint, prefix) => ({
     INDEX: `${prefix}/${endpoint}/INDEX`,
@@ -26,7 +26,7 @@ const createActionCreator = (type) => (payload, meta) => ({
 
 export const createCRUDActionCreators = (endpoint, prefix) => Object.entries(createCRUDStatusActions(endpoint, prefix)).reduce(
     (accumulator, CRUDItemStatusKeyValue) => {
-        accumulator[camelizeKeys(CRUDItemStatusKeyValue[0].toLowerCase())] = createActionCreator(CRUDItemStatusKeyValue[1]);
+        accumulator[camelize(CRUDItemStatusKeyValue[0].toLowerCase())] = createActionCreator(CRUDItemStatusKeyValue[1]);
 
         return accumulator;
     }, {}

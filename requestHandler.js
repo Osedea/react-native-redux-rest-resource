@@ -8,8 +8,7 @@ export default class RequestHandler {
         body = {}
     ) {
         const headersMerged = {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
+            ...this.options.HTTP_HEADERS,
             ...headers,
         };
 
@@ -96,22 +95,12 @@ export default class RequestHandler {
         path,
         method = 'GET',
         data = {},
-        version = 'v1/',
-        options = {},
-        jwtProtected = false,
-        jwtToken = null
+        options = {}
     ) {
         let authorization = {};
 
-        if (jwtProtected) {
-            if (!jwtToken) {
-                if (this.options.DEBUG) {
-                    console.log(`Cannot query authenticated route ${path} without token`);
-                }
-                return Promise.reject();
-            }
-
-            authorization = { Authorization: `Bearer ${jwtToken}` };
+        if (this.options.JWT_TOKEN) {
+            authorization = { Authorization: `Bearer ${this.options.JWT_TOKEN}` };
         }
 
         let body = null;
@@ -121,7 +110,7 @@ export default class RequestHandler {
         }
 
         return this.request(
-            `${this.options.API_URL}${version}${path}`,
+            `${this.options.API_URL}${path}`,
             method,
             {
                 ...authorization,

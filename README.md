@@ -11,7 +11,10 @@ import Resource from 'react-native-redux-rest-resource';
 
 export const PostsResource = Resource(
     'post',
-    { X-MOBILE-TOKEN: 'j3rkl2uh44u4uys87w3874y3rt3487wrtyw87' }
+    {
+        API_URL: 'https://mygreat.api.com/v1/', // Define the URL of your API
+        HTTP_HEADERS: { X-MOBILE-TOKEN: 'j3rkl2uh44u4uys87w3874y3rt3487wrtyw87' }, // Set extra headers
+    }
 );
 ```
 
@@ -191,11 +194,12 @@ export default = (
 
 | KEY                       | VALUE         | DEFAULT VALUE | WHAT DOES IT DO |
 | ---                       | ------        | ------------- | --------------- |
-| DEBUG                     | true/false    | `true`          | `console.log`s stuff about what is happening network-wise |
+| API_URL                   | URL | `'localhost/'` | The Base url of your API |
 | CAMELIZE_DECAMELIZE       | true/false    | `true`          | All the keys of objects coming in from the server will be camelized (ex: `customer_id` will be transformed to `customerId`) and everything that goes out of the client will be decamelized (ex: `customerId` will be transformed to `customer_id`) |
+| DEBUG                     | true/false    | `true`          | `console.log`s stuff about what is happening network-wise |
 | HTTP_ERROR_CODE_MESSAGES  | An object with keys being the status code and values being the messages | `{`<br/>`401: 'FORBIDDEN',`<br/>`403: 'FORBIDDEN',`<br/>`404: 'NOT_FOUND',`<br/>`}` | Customize the messages of the errors caught while doing the requests |
-| API_URL                   | URL | `'localhost'` | The Base url of your API |
-| HTTP_OPTIONS | Headers put on the requests | `{}` | Headers to add to the requests |
+| HTTP_HEADERS              | Headers put on the requests | `{}` | Headers to add to the requests |
+| JWT_TOKEN                 | YOUR_JWT_TOKEN              | `null` | This will add an `Authorization` header with value `Bearer YOUR_JWT_TOKEN`  |
 | REDUX_ACTIONS_PREFIX | Prefix to add to actions type | 'RNRRR' | Namespaces actions to avoid conflicts with your actions |
 
 # TODO

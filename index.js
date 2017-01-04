@@ -2,15 +2,19 @@ import middlewareCreate from './middleware';
 import { createCRUDStatusActions, createCRUDActionCreators } from './actions';
 
 const OPTIONS = {
-    DEBUG: true,
+    API_URL: 'localhost/',
     CAMELIZE_DECAMELIZE: true,
+    DEBUG: true,
     HTTP_ERROR_CODE_MESSAGES: {
         401: 'FORBIDDEN',
         403: 'FORBIDDEN',
         404: 'NOT_FOUND',
     },
-    API_URL: 'localhost',
-    HTTP_OPTIONS: {},
+    HTTP_HEADERS: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+    },
+    JWT_TOKEN: null,
     REDUX_ACTIONS_PREFIX: 'RNRRR',
 };
 
