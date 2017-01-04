@@ -26,7 +26,7 @@ const createActionCreator = (type) => (payload, meta) => ({
 
 export const createCRUDActionCreators = (endpoint, prefix) => Object.entries(createCRUDStatusActions(endpoint, prefix)).reduce(
     (accumulator, CRUDItemStatusKeyValue) => {
-        accumulator[camelizeKeys(CRUDItemStatusKeyValue[0])] = createActionCreator(CRUDItemStatusKeyValue[1]);
+        accumulator[camelizeKeys(CRUDItemStatusKeyValue[0].toLowerCase())] = createActionCreator(CRUDItemStatusKeyValue[1]);
 
         return accumulator;
     }, {}

@@ -1,4 +1,4 @@
-import middleware from './middleware';
+import middlewareCreate from './middleware';
 import { createCRUDStatusActions, createCRUDActionCreators } from './actions';
 
 const OPTIONS = {
@@ -14,24 +14,28 @@ const OPTIONS = {
     REDUX_ACTIONS_PREFIX: 'RNRRR',
 };
 
-export default (endpoint, options) => {
+export default (endpoint, options = {}) => {
     const optionsMerged = {
         ...OPTIONS,
         ...options,
     };
 
+    const actions = createCRUDStatusActions(
+        endpoint,
+        optionsMerged.REDUX_ACTIONS_PREFIX
+    );
+    const actionCreators = createCRUDActionCreators(
+        endpoint,
+        optionsMerged.REDUX_ACTIONS_PREFIX
+    );
+    const middleware = middlewareCreate(
+        endpoint,
+        optionsMerged
+    );
+
     return {
-        actions: createCRUDStatusActions(
-            endpoint,
-            optionsMerged.REDUX_ACTIONS_PREFIX
-        ),
-        actionCreators: createCRUDActionCreators(
-            endpoint,
-            optionsMerged.REDUX_ACTIONS_PREFIX
-        ),
-        middleware: middleware(
-            endpoint,
-            optionsMerged
-        ),
+        actions,
+        actionCreators,
+        middleware,
     };
 };

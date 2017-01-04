@@ -196,6 +196,7 @@ export default = (
 | HTTP_ERROR_CODE_MESSAGES  | An object with keys being the status code and values being the messages | `{`<br/>`401: 'FORBIDDEN',`<br/>`403: 'FORBIDDEN',`<br/>`404: 'NOT_FOUND',`<br/>`}` | Customize the messages of the errors caught while doing the requests |
 | API_URL                   | URL | `'localhost'` | The Base url of your API |
 | HTTP_OPTIONS | Headers put on the requests | `{}` | Headers to add to the requests |
+| REDUX_ACTIONS_PREFIX | Prefix to add to actions type | 'RNRRR' | Namespaces actions to avoid conflicts with your actions |
 
 # TODO
 
