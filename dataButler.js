@@ -4,7 +4,7 @@ import { createCRUDActionsAndActionCreators } from './actions';
 export default (endpoint, options) => {
     const actionsToHandle = createCRUDActionsAndActionCreators(endpoint, options.REDUX_ACTIONS_PREFIX);
 
-    RequestHandler.options = options.HTTP_OPTIONS;
+    RequestHandler.options = options;
 
     return (action, store) => {
         switch (action.type) {

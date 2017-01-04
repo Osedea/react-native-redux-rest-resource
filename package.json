@@ -1,6 +1,6 @@
 {
   "name": "react-native-redux-rest-resource",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A helper to handle REST Apis with Redux in react-native",
   "main": "index.js",
   "scripts": {
