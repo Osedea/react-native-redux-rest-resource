@@ -17,8 +17,11 @@ export default (endpoint, options) => {
                     store.dispatch(actionsToHandle.createSuccess(resourceFromServer));
                 })
                 .catch((error) => {
-                    store.dispatch(actionsToHandle.createFailure(error));
-                    throw error;
+                    store.dispatch(actionsToHandle.createFailure({
+                        status: error.status,
+                        message: error.message,
+                        stack: error.stack,
+                    }));
                 });
                 break;
             case actionsToHandle.READ:
@@ -29,7 +32,11 @@ export default (endpoint, options) => {
                     store.dispatch(actionsToHandle.readSuccess(resourceFromServer));
                 })
                 .catch((error) => {
-                    store.dispatch(actionsToHandle.readFailure(error));
+                    store.dispatch(actionsToHandle.readFailure({
+                        status: error.status,
+                        message: error.message,
+                        stack: error.stack,
+                    }));
                 });
                 break;
             case actionsToHandle.UPDATE:
@@ -41,7 +48,11 @@ export default (endpoint, options) => {
                     store.dispatch(actionsToHandle.updateSuccess(resourceFromServer));
                 })
                 .catch((error) => {
-                    store.dispatch(actionsToHandle.updateFailure(error));
+                    store.dispatch(actionsToHandle.updateFailure({
+                        status: error.status,
+                        message: error.message,
+                        stack: error.stack,
+                    }));
                 });
                 break;
             case actionsToHandle.DELETE:
@@ -52,7 +63,11 @@ export default (endpoint, options) => {
                     store.dispatch(actionsToHandle.deleteSuccess(resourceFromServer));
                 })
                 .catch((error) => {
-                    store.dispatch(actionsToHandle.deleteFailure(error));
+                    store.dispatch(actionsToHandle.deleteFailure({
+                        status: error.status,
+                        message: error.message,
+                        stack: error.stack,
+                    }));
                 });
                 break;
             case actionsToHandle.INDEX:
@@ -63,7 +78,11 @@ export default (endpoint, options) => {
                     store.dispatch(actionsToHandle.indexSuccess(resourceFromServer));
                 })
                 .catch((error) => {
-                    store.dispatch(actionsToHandle.indexFailure(error));
+                    store.dispatch(actionsToHandle.indexFailure({
+                        status: error.status,
+                        message: error.message,
+                        stack: error.stack,
+                    }));
                 });
                 break;
             default:
