@@ -1,4 +1,4 @@
-import RequestHandler from './RequestHandler';
+import RequestHandler from './requestHandler';
 import { createCRUDActionsAndActionCreators } from './actions';
 
 export default (endpoint, options) => {
