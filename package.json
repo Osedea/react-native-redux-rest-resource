@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Osedea/react-native-redux-rest-resource#readme",
   "dependencies": {
-    "eslint": "~3.12.2",
+    "eslint": "~7.5.0",
     "eslint-config-osedea": "~0.4.2",
     "humps": "~2.0.0"
   }
